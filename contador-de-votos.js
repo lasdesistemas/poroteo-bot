@@ -1,16 +1,15 @@
 const https = require('https')
 
 const optionsSenadores = {
-  hostname: 'https://contador-de-votos.herokuapp.com',
+  hostname: 'contador-de-votos.herokuapp.com',
   path: '/senadores',
-  method: 'GET'
 }
 
 class ContadorDeVotos {
 
     senadores() {
         const promise = new Promise((resolve, reject) => {
-            var request = https.request(optionsSenadores, function (res) {
+            var request = https.get(optionsSenadores, function (res) {
                 var data = '';
                 res.on('data', (chunk) => {
                     data += chunk;
