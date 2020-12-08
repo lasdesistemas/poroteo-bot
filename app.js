@@ -11,19 +11,21 @@ const options = {
   }
 };
 // Heroku routes from port :443 to $PORT
-// Add URL of your app to env variable or enable Dyno Metadata
-// to get this automatically
-// See: https://devcenter.heroku.com/articles/dyno-metadata
-const url = process.env.APP_URL || 'https://poroteo-bot.herokuapp.com:443';
+const url = process.env.APP_URL;
 const bot = new TelegramBot(TOKEN, options);
-
 
 // This informs the Telegram servers of the new webhook.
 // Note: we do not need to pass in the cert, as it already provided
 bot.setWebHook(`${url}/bot${TOKEN}`);
 
+// // Just to ping!
+// bot.on('message', function onMessage(msg) {
+//   bot.sendMessage(msg.chat.id, 'I am alive on Heroku!');
+// });
 
-// Just to ping!
-bot.on('message', function onMessage(msg) {
-  bot.sendMessage(msg.chat.id, 'I am alive on Heroku!');
+bot.onText(/\/start/, function (msg, match) {
+    var fromId = msg.chat.id;
+    var message = "Este bot te dice como va el poroteo por la votación de la IVE en diputades y senadores argentines\n";
+    message += "Enviá /senadores para ver el estado de los votos en senadores";
+    bot.sendMessage(fromId, message);
 });
