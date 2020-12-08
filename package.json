@@ -1,0 +1,19 @@
+{
+    "name": "poroteo-bot",
+    "version": "1.0.0",
+    "description": "Este es un bot que informa sobre los votos a favor y en contra del aborto en base a un servicio rest",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/lasdesistemas/poroteo-bot"
+    },
+    "license": "MIT",
+    "author": "Nayla Portas",
+    "dependencies": {
+      "node-telegram-bot-api": "^0.50.0"
+    }
+  }
+  
