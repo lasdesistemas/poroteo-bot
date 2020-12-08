@@ -16,7 +16,6 @@ class ContadorDeVotos {
                 });
                 res.on('end', () => {
                     const votos = JSON.parse(data);
-                    console.log(votos);
                     resolve(votos);
                 });
             });
