@@ -25,3 +25,25 @@ bot.onText(/\/start/, function (msg, match) {
     message += "Enviá /diputades para ver el estado de los votos en diputades";
     bot.sendMessage(fromId, message);
 });
+
+bot.onText(/\/senadores/, function (msg, match) {
+  console.log('Pedidos al bot:' + botRequestCount++);
+  //let votos = recolector.votosAcumulados();
+  var fromId = msg.chat.id;
+
+  let votosSenadores = {
+    aFavor: 0,
+    enContra: 0,
+    noConfirmado: 0,
+    seAbstiene: 0,
+    fechaUltimaActualizacion: 0
+  }
+
+  var message = "Por ahora en senadores van:\n";
+  message += "*" + votosSenadores.aFavor + "* a favor\n";
+  message += "*" + votosSenadores.enContra + "* en contra\n";
+  message += "*" + votosSenadores.noConfirmado + "* no confirmados\n";
+  message += "*" + votosSenadores.seAbstiene + "* abstenciones\n";
+  message += "Para más información mandá /masinfo";
+  bot.sendMessage(fromId, message, {parse_mode: "Markdown"});
+});
