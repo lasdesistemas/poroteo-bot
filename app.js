@@ -80,3 +80,13 @@ bot.onText(/\/about/, function (msg, match) {
   var message = "Hecho con <3 por [LAS] de sistemas.\n Seguinos en Twitter, Facebook e Instagram: @lasdesistemas, o en http://lasdesistemas.org";
   bot.sendMessage(fromId, message);
 });
+
+bot.onText(/\/help/, function (msg, match) {
+  var fromId = msg.chat.id;
+  var message = "Comandos disponibles:\n";
+  message += "/senadores - para ver el estado de los votos en senadores\n";
+  message += "/diputades - para ver el estado de los votos en diputades\n";
+  message += "/masinfo - para ver información detallada sobre la votación\n";
+  message += "/about - para saber más de nosotres\n";
+  bot.sendMessage(fromId, message);
+});
