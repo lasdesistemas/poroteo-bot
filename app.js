@@ -67,3 +67,10 @@ bot.onText(/\/diputades/, function (msg, match) {
     bot.sendMessage(fromId, "En este momento no puedo responder. Intentá más tarde.", {parse_mode: "Markdown"});
   });
 });
+
+bot.onText(/\/masinfo/, function (msg, match) {
+  var fromId = msg.chat.id;
+  var message = "Podés encontrar más información en:\n";
+  message += "https://ecofeminita.github.io/poroteoaborto2020 \n";
+  bot.sendMessage(fromId, message);
+});
