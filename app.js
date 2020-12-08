@@ -25,7 +25,11 @@ bot.onText(/\/start/, function (msg, match) {
     var message = "Este bot te dice como va el poroteo por la votación de la IVE en diputades y senadores en Argentina en 2020\n";
     message += "Enviá /senadores para ver el estado de los votos en senadores\n";
     message += "Enviá /diputades para ver el estado de los votos en diputades";
-    bot.sendMessage(fromId, message);
+    bot.sendMessage(fromId, message, {
+      "reply_markup": {
+          "keyboard": [["/diputades", "/senadores"],["/masinfo"], ["/help"], ["/about"]]
+      }
+    });
 });
 
 var botRequestCount = 1;
