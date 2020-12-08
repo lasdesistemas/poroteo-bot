@@ -26,6 +26,8 @@ bot.onText(/\/start/, function (msg, match) {
     bot.sendMessage(fromId, message);
 });
 
+var botRequestCount = 1;
+
 bot.onText(/\/senadores/, function (msg, match) {
   console.log('Pedidos al bot:' + botRequestCount++);
   //let votos = recolector.votosAcumulados();
