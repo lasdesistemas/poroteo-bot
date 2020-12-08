@@ -74,3 +74,9 @@ bot.onText(/\/masinfo/, function (msg, match) {
   message += "https://ecofeminita.github.io/poroteoaborto2020 \n";
   bot.sendMessage(fromId, message);
 });
+
+bot.onText(/\/about/, function (msg, match) {
+  var fromId = msg.chat.id;
+  var message = "Hecho con <3 por [LAS] de sistemas.\n Seguinos en Twitter, Facebook e Instagram: @lasdesistemas, o en http://lasdesistemas.org";
+  bot.sendMessage(fromId, message);
+});
