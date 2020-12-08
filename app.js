@@ -48,3 +48,22 @@ bot.onText(/\/senadores/, function (msg, match) {
     bot.sendMessage(fromId, "En este momento no puedo responder. Intentá más tarde.", {parse_mode: "Markdown"});
   });
 });
+
+bot.onText(/\/diputades/, function (msg, match) {
+  console.log('Pedidos al bot:' + botRequestCount++);
+  let promise = contador.diputades();
+  var fromId = msg.chat.id;
+
+  promise.then((votosDiputades) => { 
+    var message = "Por ahora en diputades van:\n";
+    message += "*" + votosDiputades.aFavor + "* a favor\n";
+    message += "*" + votosDiputades.enContra + "* en contra\n";
+    message += "*" + votosDiputades.noConfirmado + "* no confirmados\n";
+    message += "*" + votosDiputades.seAbstiene + "* abstenciones\n";
+    message += "Para más información mandá /masinfo";
+    bot.sendMessage(fromId, message, {parse_mode: "Markdown"});
+  }).catch((error) => {
+    console.log(error);
+    bot.sendMessage(fromId, "En este momento no puedo responder. Intentá más tarde.", {parse_mode: "Markdown"});
+  });
+});
