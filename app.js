@@ -1,5 +1,7 @@
 const TOKEN = process.env.TELEGRAM_TOKEN;
 const TelegramBot = require('node-telegram-bot-api');
+const contadorDeVotos = require("./contador-de-votos");
+const contador = new contadorDeVotos();
 const options = {
   webHook: {
     // Port to which you should bind is assigned to $PORT variable
@@ -30,22 +32,19 @@ var botRequestCount = 1;
 
 bot.onText(/\/senadores/, function (msg, match) {
   console.log('Pedidos al bot:' + botRequestCount++);
-  //let votos = recolector.votosAcumulados();
+  let promise = contador.senadores();
   var fromId = msg.chat.id;
 
-  let votosSenadores = {
-    aFavor: 0,
-    enContra: 0,
-    noConfirmado: 0,
-    seAbstiene: 0,
-    fechaUltimaActualizacion: 0
-  }
-
-  var message = "Por ahora en senadores van:\n";
-  message += "*" + votosSenadores.aFavor + "* a favor\n";
-  message += "*" + votosSenadores.enContra + "* en contra\n";
-  message += "*" + votosSenadores.noConfirmado + "* no confirmados\n";
-  message += "*" + votosSenadores.seAbstiene + "* abstenciones\n";
-  message += "Para más información mandá /masinfo";
-  bot.sendMessage(fromId, message, {parse_mode: "Markdown"});
+  promise.then((votosSenadores) => { 
+    var message = "Por ahora en senadores van:\n";
+    message += "*" + votosSenadores.aFavor + "* a favor\n";
+    message += "*" + votosSenadores.enContra + "* en contra\n";
+    message += "*" + votosSenadores.noConfirmado + "* no confirmados\n";
+    message += "*" + votosSenadores.seAbstiene + "* abstenciones\n";
+    message += "Para más información mandá /masinfo";
+    bot.sendMessage(fromId, message, {parse_mode: "Markdown"});
+  }).catch((error) => {
+    console.log(error);
+    bot.sendMessage(fromId, "En este momento no puedo responder. Intentá más tarde.", {parse_mode: "Markdown"});
+  });
 });
