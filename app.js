@@ -88,5 +88,9 @@ bot.onText(/\/help/, function (msg, match) {
   message += "/diputades - para ver el estado de los votos en diputades\n";
   message += "/masinfo - para ver información detallada sobre la votación\n";
   message += "/about - para saber más de nosotres\n";
-  bot.sendMessage(fromId, message);
+  bot.sendMessage(fromId, message, {
+    "reply_markup": {
+        "keyboard": [["/diputades", "/senadores"],["/masinfo"], ["/help"], ["/about"]]
+    }
+  });
 });
