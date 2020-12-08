@@ -77,7 +77,7 @@ bot.onText(/\/masinfo/, function (msg, match) {
 
 bot.onText(/\/about/, function (msg, match) {
   var fromId = msg.chat.id;
-  var message = "Hecho con <3 por [LAS] de sistemas.\n Seguinos en Twitter, Facebook e Instagram: @lasdesistemas, o en http://lasdesistemas.org";
+  var message = "Hecho con <3 por [LAS] de sistemas.\n Seguinos en Twitter, Facebook e Instagram: lasdesistemas, o en https://lasdesistemas.org";
   bot.sendMessage(fromId, message);
 });
 
