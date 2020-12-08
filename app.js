@@ -20,20 +20,6 @@ const bot = new TelegramBot(TOKEN, options);
 // Note: we do not need to pass in the cert, as it already provided
 bot.setWebHook(`${url}/bot${TOKEN}`);
 
-bot.on('message', (msg) => {
-  var fromId = msg.chat.id;
-  var message = "Comandos disponibles:\n";
-  message += "/senadores - para ver el estado de los votos en senadores\n";
-  message += "/diputades - para ver el estado de los votos en diputades\n";
-  message += "/masinfo - para ver información detallada sobre la votación\n";
-  message += "/about - para saber más de nosotres\n";
-  bot.sendMessage(fromId, message, {
-    "reply_markup": {
-        "keyboard": [["/diputades", "/senadores"],["/masinfo"], ["/help"], ["/about"]]
-    }
-  });
-});
-
 bot.onText(/\/start/, function (msg, match) {
     var fromId = msg.chat.id;
     var message = "Este bot te dice como va el poroteo por la votación de la IVE en diputades y senadores en Argentina en 2020\n";
